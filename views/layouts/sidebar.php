@@ -15,6 +15,7 @@
 		<?php if(!isset($_SESSION['identity'])): ?>
 			<h3>Entrar a la web</h3>
 			<form action="<?=base_url?>usuario/login" method="post">
+				
 				<label for="email">Email</label>
 				<input type="email" name="email" />
 				<label for="password">Contraseña</label>

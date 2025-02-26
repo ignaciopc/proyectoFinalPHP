@@ -100,6 +100,8 @@ class usuarioController
 				$_SESSION['error_login'] = 'Identificación fallida !!';
 			}
 		}
+		header("Location: " . base_url);
+
 	}
 
 
