@@ -44,4 +44,4 @@
 </aside>
 
 <!-- CONTENIDO CENTRAL -->
-<div id="central"></div>
+<div id="central">
