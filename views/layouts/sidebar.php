@@ -14,7 +14,7 @@
 		
 		<?php if(!isset($_SESSION['identity'])): ?>
 			<h3>Entrar a la web</h3>
-			<form action="usuario/login" method="post">
+			<form action="<?=base_url?>usuario/login" method="post">
 				<label for="email">Email</label>
 				<input type="email" name="email" />
 				<label for="password">Contraseña</label>
@@ -34,9 +34,9 @@
 			
 			<?php if(isset($_SESSION['identity'])): ?>
 				<li><a href="pedido/mis_pedidos">Mis pedidos</a></li>
-				<li><a href="usuario/logout">Cerrar sesión</a></li>
+				<li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
 			<?php else: ?> 
-				<li><a href="usuario/registro">Registrate aqui</a></li>
+				<li><a href="<?=base_url?>usuario/registro">Registrate aqui</a></li>
 			<?php endif; ?> 
 		</ul>
 	</div>
