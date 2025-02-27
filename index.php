@@ -1,11 +1,11 @@
 <?php
 session_start();
 require_once 'autoload.php';
+require_once 'lib/Database.php';
+require_once 'config/parameters.php';
+require_once 'helpers/utils.php';
 require_once 'views/layouts/header.php';
 require_once 'views/layouts/sidebar.php';
-require_once 'config/parameters.php'; // archivo de parametros
-require_once 'lib/Database.php';
-require_once 'helpers/utils.php';
 
 
 $db = new Database();
