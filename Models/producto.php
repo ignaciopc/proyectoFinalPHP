@@ -142,7 +142,7 @@ class Producto
             $stmt->execute();
 
             // Obtener los resultados como un array asociativo
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             // Manejar el error
             echo "Error al obtener categorías: " . $e->getMessage();
@@ -258,6 +258,63 @@ class Producto
         }
     }
 
+
+    public function getRandom($limit)
+    {
+        try {
+            // Consulta SQL con un placeholder para el límite
+            $sql = "SELECT * FROM productos ORDER BY RAND() LIMIT :limit";
+
+            // Preparar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Enlazar el parámetro :limit con el valor pasado en el método
+            $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Obtener los resultados como un array de objetos
+            $productos = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            // Retornar los productos obtenidos
+            return $productos;
+
+        } catch (PDOException $e) {
+            // Si ocurre un error, manejarlo
+            echo "Error al obtener productos aleatorios: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getAllCategory()
+    {
+        try {
+            // Consulta SQL con placeholders
+            $sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p "
+                . "INNER JOIN categorias c ON c.id = p.categoria_id "
+                . "WHERE p.categoria_id = :categoria_id "
+                . "ORDER BY p.id DESC";
+
+            // Preparar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Enlazar el parámetro :categoria_id con el valor del ID de categoría de la clase
+            $categoria_id = $this->getCategoria_id();  // Asignamos el valor a una variable
+            $stmt->bindParam(':categoria_id', $categoria_id, PDO::PARAM_INT);  // Pasamos la variable
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Obtener los productos como un array de objetos
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        } catch (PDOException $e) {
+            // Si ocurre un error, manejarlo
+            echo "Error al obtener productos por categoría: " . $e->getMessage();
+            return false;
+        }
+    }
 
 
 }

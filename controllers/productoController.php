@@ -5,6 +5,8 @@ class productoController
 {
     public function index()
     {
+        $producto = new producto();
+        $producto->getRandom(3);
         require_once "views/productos/destacados.php";
     }
 
@@ -71,7 +73,14 @@ class productoController
                 }
 
                 // Guardar el producto
-                if ($producto->save()) {
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $producto->setId($id);
+                    $save = $producto->edit();
+                } else {
+                    $save = $producto->save();
+                }
+                if ($save) {
                     $_SESSION['producto'] = "complete";
                 } else {
                     $_SESSION['producto'] = "failed";
@@ -109,7 +118,7 @@ class productoController
         header('Location: ' . base_url . 'producto/gestion');
     }
     public function editar()
-    { 
+    {
         Utils::isAdmin();
 
         if (isset($_GET['id'])) {
@@ -124,6 +133,20 @@ class productoController
         } else {
             header('Location' . base_url . 'producto/gestion');
         }
+    }
+
+    public function ver()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            $producto = new Producto();
+            $producto->setId($id);
+
+            $product = $producto->getOne();
+
+        }
+        require_once 'views/producto/ver.php';
     }
 
 }

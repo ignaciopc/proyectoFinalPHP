@@ -72,5 +72,30 @@ class categoria
             return false; // Si hubo un error
         }
     }
+
+
+    public function getOne()
+    {
+        $sql = "SELECT * FROM categorias WHERE id = :id";
+
+        try {
+            // Preparar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Enlazar el parámetro :id
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Obtener el resultado como un objeto
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            // Manejar el error
+            echo "Error al obtener categoría: " . $e->getMessage();
+            return false;
+        }
+    }
+
 }
 ?>

@@ -21,10 +21,14 @@
 		<!-- MENU -->
 		<nav class="menu">
 			<ul>
+				<div class="categoria-item">
+
+					<li><a href="<?= base_url ?>">Inicio</a></li>
+				</div>
 				<?php $categorias = Utils::showCategorias(); ?>
 				<?php foreach ($categorias as $categoria): ?>
 					<div class="categoria-item">
-						<li> <a href=""><?php echo $categoria['nombre']; ?></a></li>
+						<li> <a href="<?=base_url?>categoria/ver&id=<?=$categoria['id']?>"><?php echo $categoria['nombre']; ?></a></li>
 					</div>
 				<?php endforeach; ?>
 			</ul>
