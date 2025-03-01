@@ -98,6 +98,9 @@ class usuario
 
     public function save()
     {
+        // Aplicar el hash a la contraseña
+        $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
+
         // Consulta SQL con placeholders
         $sql = "INSERT INTO usuarios (nombre, apellidos, email, password, rol, imagen) 
                 VALUES (:nombre, :apellidos, :email, :password, 'user', :imagen)";
@@ -110,7 +113,7 @@ class usuario
             $stmt->bindParam(':nombre', $this->nombre);
             $stmt->bindParam(':apellidos', $this->apellidos);
             $stmt->bindParam(':email', $this->email);
-            $stmt->bindParam(':password', $this->password);
+            $stmt->bindParam(':password', $hashedPassword);  // Usar la contraseña hasheada
             $stmt->bindParam(':imagen', $this->imagen);
 
             // Ejecutar la consulta
@@ -125,22 +128,24 @@ class usuario
     }
 
 
-    public function login() {
+
+    public function login()
+    {
         $result = false;
         $email = $this->email;
         $password = $this->password;
-    
+
         try {
             // Preparar la consulta con PDO
             $sql = "SELECT * FROM usuarios WHERE email = :email LIMIT 1";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->execute();
-    
+
             // Comprobar si hay un usuario con ese email
             if ($stmt->rowCount() == 1) {
                 $usuario = $stmt->fetch(PDO::FETCH_OBJ);
-    
+
                 // Verificar la contraseña
                 if (password_verify($password, $usuario->password)) {
                     $result = $usuario;
@@ -149,10 +154,10 @@ class usuario
         } catch (PDOException $e) {
             echo "Error en el login: " . $e->getMessage();
         }
-    
+
         return $result;
     }
-    
+
 }
 
 ?>

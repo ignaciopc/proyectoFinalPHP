@@ -36,7 +36,7 @@
                 </div>
             </td>
             <td>
-                <a href="<?= base_url ?>carrito/delete&index=<?= $indice ?>" class="button button-carrito button-red">Quitar producto</a>
+                <a href="<?= base_url ?>carrito/deleteEspecifico&index=<?= $indice ?>" class="button button-carrito button-red">Quitar producto</a>
             </td>
         </tr>
         
@@ -55,7 +55,7 @@
         $stats = Utils::statsCarrito(); 
         ?>
         <h3>Precio total: <?= $stats['total'] ?> $</h3>
-        <a href="<?= base_url ?>pedido/crear" class="button button-pedido">Hacer pedido</a>
+        <a href="<?= base_url ?>pedido/hacer" class="button button-pedido">Hacer pedido</a>
     </div>
 
 <?php else: ?>

@@ -798,3 +798,74 @@ button {
 #detail-product .data .button:hover {
     background-color: #27ae60;
 }
+
+/* Estilos específicos para la página de hacer pedido */
+.pedido-title {
+    text-align: center;
+    color: #333;
+    margin-top: 50px;
+}
+
+.pedido-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.pedido-link a:hover {
+    text-decoration: underline;
+}
+
+.pedido-direccion-title {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pedido-form {
+    background-color: #fff;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pedido-label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #555;
+}
+
+.pedido-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+.pedido-input:focus {
+    outline: none;
+    border-color: #007BFF;
+    background-color: #fff;
+}
+
+.pedido-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pedido-submit:hover {
+    background-color: #0056b3;
+}

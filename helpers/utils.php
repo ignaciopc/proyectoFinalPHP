@@ -52,6 +52,37 @@ class Utils
         return $stats; // Devolver los datos del carrito
     }
 
+
+    public static function isIdentity()
+    {
+
+        if (!isset($_SESSION["identity"])) {
+            header("Location:" . base_url);
+        } else {
+            return true;
+        }
+    }
+
+    public static function showStatus($status)
+    {
+        $value = 'Pendiente'; // Valor por defecto
+
+        // Comprobar el estado y asignar el valor correspondiente
+        if ($status == 'confirm') {
+            $value = 'Pendiente';
+        } elseif ($status == 'preparation') {
+            $value = 'En preparación';
+        } elseif ($status == 'ready') {
+            $value = 'Preparado para enviar';
+        } elseif ($status == 'sended') {
+            $value = 'Enviado';
+        }
+
+        // Retornar el valor del estado
+        return $value;
+    }
+
+
 }
 
 

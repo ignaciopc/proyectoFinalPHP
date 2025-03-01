@@ -82,17 +82,13 @@ class usuarioController
 	public function login()
 	{
 		if ($_POST) {
-
-
-			$usuario = new usuario();
-
+			$usuario = new Usuario();
 			$usuario->setEmail($_POST['email']);
 			$usuario->setPassword($_POST['password']);
 			$identity = $usuario->login();
 
 			if ($identity) {
 				$_SESSION['identity'] = $identity;
-
 				if ($identity->rol == 'admin') {
 					$_SESSION['admin'] = true;
 				}
@@ -101,21 +97,21 @@ class usuarioController
 			}
 		}
 		header("Location: " . base_url);
-
 	}
 
 
-	public function logout(){
+	public function logout()
+	{
 		if (isset($_SESSION['identity'])) {
 			unset($_SESSION['identity']);
 			# code...
 		}
 
 		if (isset($_SESSION['admin'])) {
-			unset($_SESSION['admin']);	
+			unset($_SESSION['admin']);
 			# code...
 		}
-		header('Location:'. base_url . '');
+		header('Location:' . base_url . '');
 	}
 }
 ?>
