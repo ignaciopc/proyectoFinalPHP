@@ -94,14 +94,14 @@ class productoController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $producto = new Producto(); 
+            $producto = new Producto();
             $producto->setId($id);
             $delete = $producto->delete();
 
             if ($delete) {
                 $_SESSION['delete'] = 'complete';
             } else {
-                $_SESSION['delete'] = 'failed'; 
+                $_SESSION['delete'] = 'failed';
 
             }
 
@@ -109,9 +109,21 @@ class productoController
         header('Location: ' . base_url . 'producto/gestion');
     }
     public function editar()
-    {
-        var_dump($_GET);
+    { 
+        Utils::isAdmin();
 
+        if (isset($_GET['id'])) {
+            $editar = true;
+
+            $producto = new Producto();
+            $producto->setId($_GET['id']);
+
+            $prod = $producto->getOne();
+            require_once('views/productos/crear.php');
+
+        } else {
+            header('Location' . base_url . 'producto/gestion');
+        }
     }
 
 }

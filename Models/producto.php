@@ -130,6 +130,26 @@ class Producto
         }
     }
 
+    public function getOne()
+    {
+        $sql = "SELECT * FROM productos WHERE id = {$this->id}";
+
+        try {
+            // Preparar la consulta
+            $stmt = $this->db->prepare($sql);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Obtener los resultados como un array asociativo
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Manejar el error
+            echo "Error al obtener categorías: " . $e->getMessage();
+            return false;
+        }
+    }
+
     public function save()
     {
         // Asigna la fecha actual si no se proporcionó una
@@ -182,16 +202,16 @@ class Producto
             $stmt = $this->db->prepare($sql);
 
             // Enlazar los parámetros
-            $stmt->bindParam(':nombre', $this->getNombre());
-            $stmt->bindParam(':descripcion', $this->getDescripcion());
-            $stmt->bindParam(':precio', $this->getPrecio());
-            $stmt->bindParam(':stock', $this->getStock());
-            $stmt->bindParam(':categoria_id', $this->getCategoria_id());
+            $stmt->bindParam(':nombre', $this->nombre);
+            $stmt->bindParam(':descripcion', $this->descripcion);
+            $stmt->bindParam(':precio', $this->precio);
+            $stmt->bindParam(':stock', $this->stock);
+            $stmt->bindParam(':categoria_id', $this->categoria_id);
             $stmt->bindParam(':id', $this->id);
 
             // Si hay una imagen, enlazarla también
             if ($this->getImagen() != null) {
-                $stmt->bindParam(':imagen', $this->getImagen());
+                $stmt->bindParam(':imagen', $this->imagen);
             }
 
             // Ejecutar la consulta

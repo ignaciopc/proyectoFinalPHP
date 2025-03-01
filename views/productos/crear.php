@@ -1,10 +1,26 @@
-<h1>Crear nuevos productos</h1>
+<?php if (isset($editar) && isset($prod) && is_object($prod)) {
+
+    ?>
+    <h1>Editar productos</h1>
+
+<?php
+        $url = base_url . "producto/editar&id=" . $prod->id;
+
+} else {
+    ?>
+    <h1>Crear nuevos productos</h1>
+    
+    <?php
+        $url = base_url . "producto/save";
+
+} ?>
 
 
 
 <div class="form_container">
-
-    <form action="<?= base_url ?>producto/save" method="POST" enctype="multipart/form-data">
+    <?php
+    ?>
+    <form action="<?=  $url?>" method="POST" enctype="multipart/form-data">
         <label for=" nombre">Nombre</label>
         <input type="text" name="nombre" />
 
