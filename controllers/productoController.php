@@ -146,7 +146,7 @@ class productoController
             $product = $producto->getOne();
 
         }
-        require_once 'views/producto/ver.php';
+        require_once 'views/productos/ver.php';
     }
 
 }

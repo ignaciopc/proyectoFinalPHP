@@ -4,9 +4,10 @@
 	<div id="carrito" class="block_aside">
 		<h3>Mi carrito</h3>
 		<ul>
-			<li><a href="carrito/index">Productos </a></li>
-			<li><a href="carrito/index">Total: </a></li>
-			<li><a href="carrito/index">Ver el carrito</a></li>
+			<?php $stats = Utils::statsCarrito();?>
+			<li><a href="<?=base_url?>carrito/index">Productos (<?=$stats['count']?>)</a></li>
+			<li><a href="<?=base_url?>carrito/index">Total: <?=$stats['total']?> $</a></li>
+			<li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li>
 		</ul>
 	</div>
 	

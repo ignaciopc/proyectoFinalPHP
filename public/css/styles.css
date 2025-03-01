@@ -739,3 +739,62 @@ button {
     background-color: #388e3c;  /* Fondo más oscuro al pasar el ratón */
 }
 
+
+
+/* Estilo para el contenedor principal de los detalles del producto */
+#detail-product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+/* Estilo para la sección de imagen */
+#detail-product .image {
+    flex: 1;
+    max-width: 450px;
+    margin-right: 20px;
+    text-align: center;
+}
+
+#detail-product .image img {
+    max-width: 100%;
+    height: auto; /* Para que la imagen mantenga su aspecto original */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para la imagen */
+}
+
+/* Estilo para la sección de datos */
+#detail-product .data {
+    flex: 2;
+    max-width: 600px;
+}
+
+#detail-product .data .description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#detail-product .data .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+#detail-product .data .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#detail-product .data .button:hover {
+    background-color: #27ae60;
+}

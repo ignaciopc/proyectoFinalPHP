@@ -29,6 +29,29 @@ class Utils
         return $categorias;
     }
 
+
+    public static function statsCarrito()
+    {
+        // Inicializar las variables para contar y calcular el total
+        $stats = array(
+            'count' => 0,
+            'total' => 0
+        );
+
+        // Comprobar si el carrito existe en la sesión
+        if (isset($_SESSION['carrito'])) {
+            $stats['count'] = count($_SESSION['carrito']); // Contar el número de productos en el carrito
+
+            // Recorrer los productos en el carrito y calcular el total
+            foreach ($_SESSION['carrito'] as $elemento) {
+                $producto = $elemento['producto']; // Obtener el objeto producto
+                $stats['total'] += $producto->precio * $elemento['unidades']; // Sumar el total
+            }
+        }
+
+        return $stats; // Devolver los datos del carrito
+    }
+
 }
 
 
