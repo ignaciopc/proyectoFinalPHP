@@ -1,5 +1,7 @@
 <?php
 require_once 'models/pedido.php';
+require_once 'helpers/emailHelpers.php';
+
 
 class pedidoController
 {
@@ -76,12 +78,36 @@ class pedidoController
             if ($pedido) {
                 $pedido_productos = new Pedido();
                 $productos = $pedido_productos->getProductosByPedido($pedido->id);
+
+                // Construir array con los detalles del pedido
+                $detallesPedido = [
+                    'productos' => [],
+                    'total' => $pedido->coste
+                ];
+
+                foreach ($productos as $producto) {
+                    $detallesPedido['productos'][] = [
+                        'nombre' => $producto->nombre,
+                        'cantidad' => $producto->unidades,
+                        'precio' => $producto->precio
+                    ];
+                }
+
+                // Enviar el correo de confirmación
+                $resultadoCorreo = enviarCorreoPedido($identity->email, $identity->nombre, $detallesPedido);
+
+                if ($resultadoCorreo === true) {
+                    echo "Pedido realizado con éxito. Te hemos enviado un correo.";
+                } else {
+                    echo "Error al enviar el correo: " . $resultadoCorreo;
+                }
             }
         }
 
         // Cargar la vista
         require_once 'views/pedido/confirmado.php';
     }
+
     public function misPedidos()
     {
         // Verificar si el usuario está autenticado
@@ -144,24 +170,25 @@ class pedidoController
         require_once 'views/pedido/misPedidos.php';
     }
 
-	public function estado(){
-		Utils::isAdmin();
-		if(isset($_POST['pedido_id']) && isset($_POST['estado'])){
-			// Recoger datos form
-			$id = $_POST['pedido_id'];
-			$estado = $_POST['estado'];
-			
-			// Upadate del pedido
-			$pedido = new Pedido();
-			$pedido->setId($id);
-			$pedido->setEstado($estado);
-			$pedido->edit();
-			
-			header("Location:".base_url.'pedido/detalle&id='.$id);
-		}else{
-			header("Location:".base_url);
-		}
-	}
+    public function estado()
+    {
+        Utils::isAdmin();
+        if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
+            // Recoger datos form
+            $id = $_POST['pedido_id'];
+            $estado = $_POST['estado'];
+
+            // Upadate del pedido
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido->setEstado($estado);
+            $pedido->edit();
+
+            header("Location:" . base_url . 'pedido/detalle&id=' . $id);
+        } else {
+            header("Location:" . base_url);
+        }
+    }
 
 
 
