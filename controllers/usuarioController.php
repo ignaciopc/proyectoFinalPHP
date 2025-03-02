@@ -182,7 +182,7 @@ class usuarioController
 				$_SESSION['identity']->apellidos = $apellidos;
 				$_SESSION['identity']->email = $email;
 				$_SESSION["update_success"] = "Datos actualizados correctamente.";
-				header("Location:" . base_url . "usuario/index"); // Redirigir al perfil
+				header("Location:" . base_url . "usuario/modificar"); // Redirigir al perfil
 			} else {
 				$_SESSION["update_error"] = ["Error al actualizar los datos."];
 				header("Location:" . base_url . "usuario/modificar"); // Redirigir de nuevo al formulario de modificación

@@ -6,9 +6,6 @@
     font-family: sans-serif, Helvetica, Arial;
 }
 
-body {
-    background: url(../img/bg.png);
-}
 
 a {
     color: #01B1EA;
@@ -28,20 +25,10 @@ a:hover {
     color: red;
 }
 
-table {
-    text-align: center;
-    width: 100%;
-    border-bottom: 1px solid #ccc;
-}
 
-td {
-    border-top: 1px solid #ccc;
-    padding: 2px;
-}
 
-.thumb {
-    width: 100px;
-}
+
+
 
 /*CONTAINER*/
 #container {
@@ -55,77 +42,94 @@ td {
 
 #header {
     height: 145px;
-    background: #F0F0F0;
+    background: #A8D08D;
+    /* Verde suave para la frescura de la frutería */
+    display: flex;
+    justify-content: flex-start;
+    /* Alinea todo a la izquierda */
+    align-items: center;
+    /* Centra los elementos verticalmente */
+    padding: 0 20px;
 }
 
 #logo {
-    padding: 20px;
-    margin-left: 20px;
-    float: left;
+    display: flex;
+    align-items: center;
 }
 
 #logo img {
-    float: left;
-    height: 100px;
+    height: 60px;
+    /* Ajusta el tamaño del logo */
+    margin-right: 20px;
+    /* Espacio entre el logo y el nombre */
 }
 
-#logo a {
-    float: left;
-    font-size: 40px;
-    letter-spacing: 4px;
-    font-family: 'Open Sans', Helvetica, Arial;
-    text-transform: uppercase;
-    color: #01B1EA;
+#nombre-fruteria {
+    font-size: 30px;
+    font-family: 'Arial', sans-serif;
     font-weight: bold;
+    color: #2C6B2F;
+    /* Un verde más oscuro para contrastar con el fondo */
+    text-transform: uppercase;
+    /* Mayúsculas para destacar el nombre */
+    flex-grow: 1;
+    /* Hace que el texto ocupe el espacio restante */
+    text-align: center;
+    /* Centra el texto */
+}
+
+
+
+/* Estilo para el contenedor de la navegación */
+.menu {
+    background-color: #A8D08D;
+    /* Verde suave, asociando a la frescura de una frutería */
+    /* Verde suave, asociando a la frescura de una frutería */
+    padding: 10px 0;
+    /* Sombra suave para darle un toque elegante */
+}
+
+.menu ul {
+    list-style-type: none;
+    /* Elimina los puntos en la lista */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* Para que los elementos estén en línea */
+    justify-content: center;
+    /* Centra los elementos dentro de la barra de navegación */
+}
+
+.menu .categoria-item {
+    margin: 0 15px;
+    /* Espaciado entre los elementos */
+}
+
+.menu .categoria-item a {
     text-decoration: none;
-    margin-top: 18px;
-    margin-left: 25px;
-    text-shadow: 0px 2px 1px #222222;
-    transition: all 300ms;
+    /* Quita el subrayado */
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    color: #2C6B2F;
+    /* Verde oscuro que contrasta con el fondo */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Hace que el texto esté en mayúsculas */
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Efecto de transición para hover */
 }
 
-#logo a:hover {
-    text-shadow: 0px 2px 1px #222222, 0px 0px 4px #01B1EA;
+/* Hover effect para los enlaces */
+.menu .categoria-item :hover {
+    background-color: #2C6B2F;
+    /* Cambia a verde más oscuro al pasar el mouse */
+    color: #fff;
+    /* El texto se pone blanco */
+    border-radius: 5px;
+    /* Bordes redondeados */
 }
 
-/*MENU*/
-#menu {
-    clear: both;
-    background: #222;
-    color: white;
-    height: 55px;
-    border-bottom: 4px solid #01B1EA;
-}
-
-#menu ul {
-    list-style: none;
-    text-decoration: none;
-    margin: 0px auto;
-    margin-left: 25px;
-}
-
-#menu ul li {
-    line-height: 55px;
-    float: left;
-    border-right: 1px solid #363636;
-}
-
-#menu a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding-left: 12px;
-    padding-right: 12px;
-    transition: all 300ms;
-}
-
-#menu a:first-child {
-    border-left: 1px solid #363636;
-}
-
-#menu a:hover {
-    background: #01B1EA;
-}
 
 /*CONTENT*/
 #content {
@@ -134,10 +138,10 @@ td {
     background: white;
 }
 
-/*BARRA LATERAL*/
+/* BARRA LATERAL */
 #lateral {
     width: 22%;
-    min-height: 500px;
+    min-height: 70vh; /* Hace que ocupe toda la altura de la pantalla */
     float: left;
     margin-top: 20px;
     margin-left: 10px;
@@ -148,11 +152,18 @@ td {
     width: 90%;
     margin: 5px auto;
     padding: 10px;
+    background-color: #F2F8E4;
+    /* Color suave y fresco, como un tono de manzana verde */
+    border-radius: 8px;
+    /* Bordes redondeados para un toque más amigable */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Añadir un sombreado sutil */
 }
 
 #lateral h3 {
     display: block;
-    color: #222;
+    color: #2C6B2F;
+    /* Un verde más profundo, relacionado con el color de las frutas */
     width: 100%;
     text-align: center;
     padding-top: 2px;
@@ -160,8 +171,10 @@ td {
     margin-bottom: 15px;
     font-size: 16px;
     font-weight: bold;
-    background: #E1E1E1;
-    border-bottom: 2px solid #01B1EA;
+    background: #F7F5A6;
+    /* Un color amarillo claro, como el color de un plátano maduro */
+    border-bottom: 2px solid #2C6B2F;
+    /* Resalta el borde con el color verde */
 }
 
 #lateral ul {
@@ -174,7 +187,28 @@ td {
     margin-left: 20px;
     margin-top: 5px;
     margin-bottom: 5px;
+    color: #5A8F41;
+    /* Un color verde suave, que recuerda a las hojas de las frutas */
 }
+
+#lateral ul li a {
+    color: #2C6B2F;
+    /* El mismo verde usado en los títulos */
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+#lateral ul li a:hover {
+    color: #F7F5A6;
+    /* Cambiar a amarillo cuando se pasa el cursor */
+    background-color: #2C6B2F;
+    /* Fondo verde cuando se pasa el cursor */
+    padding: 5px;
+    border-radius: 4px;
+}
+
 
 /*FORMS*/
 .form_container {
@@ -361,15 +395,31 @@ button {
 
 
 /*FOOTER*/
+/* PIE DE PÁGINA */
 #footer {
     clear: both;
+    background-color: #F2F8E4; /* Color suave similar al de las frutas frescas */
+    padding: 15px;
     text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: white;
-    background: #222222;
-    border-top: 4px solid #01B1EA;
+    color: #2C6B2F; /* Verde, el mismo tono que usamos en otros elementos */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    border-top: 2px solid #2C6B2F; /* Borde superior verde */
 }
+
+#footer p {
+    margin: 0;
+}
+
+#footer a {
+    color: #2C6B2F; /* El mismo verde para mantener la coherencia visual */
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: #F7F5A6; /* Amarillo suave cuando se pasa el cursor, en armonía con los otros elementos */
+}
+
 
 /*CARRITO*/
 .delete-carrito {
@@ -456,9 +506,12 @@ button {
 
 /* Contenedor para centrar el botón */
 .button-container {
-    display: flex; /* Usamos Flexbox */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
+    display: flex;
+    /* Usamos Flexbox */
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: center;
+    /* Centrado vertical */
     margin-top: 30px;
     justify-content: center;
     align-items: center;
@@ -496,47 +549,16 @@ button {
 
 
 /* Estilos generales para el menú */
-.menu {
-    background-color: #333; /* Color de fondo oscuro */
-    width: 100%; /* Ancho 100% para que ocupe todo el contenedor */
-    max-width: 1200px; /* O máximo de 1200px de ancho */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-    padding: 10px 20px; /* Espaciado interno */
-    margin: 20px auto; /* Centrar el menú y separarlo de otros elementos */
-}
+
 
 /* Estilos de los elementos de la lista */
-.menu ul {
-    list-style-type: none; /* Quitar los puntos de la lista */
-    padding: 0;
-    margin: 0;
-    display: flex; /* Usamos flexbox para alinearlos en una fila */
-    justify-content: center; /* Centrar los ítems horizontalmente */
-}
+
 
 /* Estilo para cada ítem del menú */
-.menu .categoria-item {
-    font-family: 'Arial', sans-serif; /* Tipo de fuente elegante */
-    color: #fff; /* Color de texto blanco */
-    font-size: 18px; /* Tamaño de fuente */
-    padding: 10px 20px; /* Espaciado alrededor del texto */
-    border-radius: 5px; /* Bordes redondeados en cada ítem */
-    margin: 0 10px; /* Espacio entre los ítems */
-    transition: background-color 0.3s ease; /* Transición suave al pasar el mouse */
-}
+
 
 /* Cambiar el color de fondo al pasar el mouse */
-.menu .categoria-item:hover {
-    background-color: #575757; /* Fondo gris oscuro cuando el mouse pasa por encima */
-    cursor: pointer; /* Cambiar el cursor al pasar por encima */
-}
 
-/* Estilo para los ítems seleccionados o activos (si es necesario) */
-.menu .categoria-item.active {
-    background-color: #007bff; /* Fondo azul para el ítem activo */
-    color: white; /* Texto blanco */
-}
 
 /* Contenedor principal de productos */
 .categorias-wrapper {
@@ -554,7 +576,8 @@ button {
     padding: 15px;
     margin: 10px 0;
     border-radius: 8px;
-    border-left: 5px solid #007bff; /* Color destacado */
+    border-left: 5px solid #007bff;
+    /* Color destacado */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease-in-out;
 }
@@ -707,36 +730,52 @@ button {
 
 
 /* Estilo común para los enlaces que serán botones */
-.button-eliminar, .button-editar {
-    display: inline-block;  /* Asegura que el enlace se comporte como un bloque en línea */
-    padding: 10px 20px;     /* Añade algo de espacio alrededor del texto */
-    margin: 5px;            /* Añade espacio entre los botones */
-    text-align: center;     /* Centra el texto dentro del botón */
-    text-decoration: none;  /* Elimina el subrayado */
-    border-radius: 5px;     /* Bordes redondeados */
-    cursor: pointer;       /* Cambia el cursor cuando pasas el ratón por encima */
+.button-eliminar,
+.button-editar {
+    display: inline-block;
+    /* Asegura que el enlace se comporte como un bloque en línea */
+    padding: 10px 20px;
+    /* Añade algo de espacio alrededor del texto */
+    margin: 5px;
+    /* Añade espacio entre los botones */
+    text-align: center;
+    /* Centra el texto dentro del botón */
+    text-decoration: none;
+    /* Elimina el subrayado */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cambia el cursor cuando pasas el ratón por encima */
 }
 
 /* Estilos específicos para el botón "Eliminar" */
 .button-eliminar {
-    background-color: #f44336;  /* Color de fondo rojo */
-    color: white;               /* Color del texto blanco */
-    border: none;               /* Sin borde */
+    background-color: #f44336;
+    /* Color de fondo rojo */
+    color: white;
+    /* Color del texto blanco */
+    border: none;
+    /* Sin borde */
 }
 
 .button-eliminar:hover {
-    background-color: #d32f2f;  /* Fondo más oscuro al pasar el ratón */
+    background-color: #d32f2f;
+    /* Fondo más oscuro al pasar el ratón */
 }
 
 /* Estilos específicos para el botón "Editar" */
 .button-editar {
-    background-color: #4CAF50;  /* Color de fondo verde */
-    color: white;               /* Color del texto blanco */
-    border: none;               /* Sin borde */
+    background-color: #4CAF50;
+    /* Color de fondo verde */
+    color: white;
+    /* Color del texto blanco */
+    border: none;
+    /* Sin borde */
 }
 
 .button-editar:hover {
-    background-color: #388e3c;  /* Fondo más oscuro al pasar el ratón */
+    background-color: #388e3c;
+    /* Fondo más oscuro al pasar el ratón */
 }
 
 
@@ -759,9 +798,11 @@ button {
 
 #detail-product .image img {
     max-width: 100%;
-    height: auto; /* Para que la imagen mantenga su aspecto original */
+    height: auto;
+    /* Para que la imagen mantenga su aspecto original */
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave para la imagen */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para la imagen */
 }
 
 /* Estilo para la sección de datos */
@@ -868,4 +909,398 @@ button {
 
 .pedido-submit:hover {
     background-color: #0056b3;
+}
+
+
+.product {
+    width: 30%;
+    /* Ajusta el tamaño de cada producto */
+    float: left;
+    /* Disposición en fila */
+    margin: 15px 10px;
+    /* Espaciado entre los productos */
+    margin-bottom: 30px;
+    text-align: center;
+    background: #FAF2E2;
+    /* Color de fondo suave como el color de una cáscara de durazno */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efecto hover para los productos */
+.product:hover {
+    transform: translateY(-5px);
+    /* Movimiento sutil al pasar el mouse */
+    background: #F0E2A1;
+    /* Amarillo pálido como el de un plátano maduro */
+}
+
+/* Imagen del producto */
+.product img {
+    height: 180px;
+    /* Ajuste de tamaño para las imágenes */
+    width: 100%;
+    /* Aseguramos que la imagen ocupe el ancho completo del div */
+    object-fit: cover;
+    /* Asegura que la imagen se ajuste bien al contenedor */
+    margin-bottom: 10px;
+    border-radius: 10px;
+    /* Bordes redondeados para una apariencia suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil alrededor de la imagen */
+}
+
+/* Títulos de los productos */
+.product h2 {
+    font-size: 18px;
+    color: #D95F5F;
+    /* Color rojo, como las fresas y otras frutas rojas */
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Descripción o precio del producto */
+.product p {
+    font-weight: bold;
+    color: #7CB342;
+    /* Verde claro como una manzana verde */
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Botón de compra */
+.product .button {
+    background-color: #4CAF50;
+    /* Verde hoja fresca */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.product .button:hover {
+    background-color: #388E3C;
+    /* Verde más oscuro */
+    transform: scale(1.05);
+}
+
+.product .button:active {
+    background-color: #2E7D32;
+    /* Verde más profundo */
+    transform: scale(0.98);
+}
+
+/* Enlace para ver más detalles del producto */
+.product a {
+    text-decoration: none;
+    color: inherit;
+    /* Heredamos el color para que no cambie al hacer hover */
+}
+
+/* Enlace al hacer hover sobre el título */
+.product a:hover h2 {
+    color: #FF6F61;
+    /* Rosa suave, como el color de una sandía */
+}
+
+/* Estilo general para el carrito */
+h1 {
+    color: #2C6B2F; /* Color verde suave, asociado a frutas frescas */
+    font-size: 2em;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Tabla del carrito */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    background-color: #F9F9F9; /* Fondo suave */
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+table th {
+    background-color: #A4D39C; /* Verde suave, parecido a la naturaleza */
+    color: #2C6B2F;
+}
+
+table td a {
+    color: #2C6B2F;
+    text-decoration: none;
+}
+
+table td a:hover {
+    color: #F7F5A6; /* Amarillo suave */
+}
+
+/* Estilo para las imágenes del carrito */
+.img_carrito {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+/* Botones de subir/bajar unidades */
+.updown-unidades {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.updown-unidades a {
+    background-color: #FF9F1C; /* Naranja brillante que recuerda a la frescura de las frutas */
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.updown-unidades a:hover {
+    background-color: #F7F5A6; /* Amarillo suave al pasar el cursor */
+}
+
+/* Estilo para los botones */
+.button {
+    background-color: #2C6B2F; /* Verde oscuro */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #F7F5A6; /* Amarillo suave al pasar el cursor */
+}
+
+/* Estilo para el botón de "Vaciar carrito" */
+.button-delete {
+    background-color: #FF4C4C; /* Rojo brillante */
+}
+
+.button-delete:hover {
+    background-color: #F7F5A6;
+}
+
+/* Total del carrito */
+.total-carrito {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.total-carrito h3 {
+    color: #2C6B2F;
+    font-weight: bold;
+}
+
+.total-carrito a {
+    background-color: #FF9F1C; /* Naranja, para hacer contraste */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.total-carrito a:hover {
+    background-color: #F7F5A6; /* Amarillo suave */
+}
+
+/* Estilo para el mensaje cuando el carrito está vacío */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #FF4C4C; /* Rojo suave */
+}
+
+
+.categorias-wrapper {
+    width: 80%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #F9F9F9; /* Fondo suave */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título de las categorías */
+.categorias-titulo {
+    font-size: 2em;
+    color: #2C6B2F;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para cada categoría */
+.categoria-item {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #E9F7DF; /* Fondo verde claro */
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.categoria-id, .categoria-nombre {
+    font-size: 1.2em;
+    margin: 5px 0;
+    color: #2C6B2F; /* Verde */
+}
+
+/* Estilo para las acciones */
+.categoria-acciones {
+    margin-top: 15px;
+}
+
+.categoria-acciones .button {
+    background-color: #FF9F1C; /* Naranja brillante */
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* Estilo para el contenedor de botón de agregar categoría */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.button-container .button {
+    background-color: #2C6B2F; /* Verde suave */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #A7C5BD, #F2F8E4); /* Gradiente suave de verde claro */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+/* Estilo del título */
+h1 {
+    text-align: center;
+    color: #4CAF50; /* Verde, relacionado con la naturaleza y fruterías */
+    font-size: 2.5rem;
+    margin-top: 40px;
+}
+
+/* Estilo de los mensajes de error y éxito */
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 5px;
+}
+
+/* Estilo del formulario */
+.modificar-cuenta-form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modificar-cuenta-form label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.modificar-cuenta-form input[type="text"],
+.modificar-cuenta-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.modificar-cuenta-form input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    background-color: #4CAF50; /* Verde */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modificar-cuenta-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* PIE DE PÁGINA */
+html, body {
+    height: 100%; /* Asegura que el HTML y el body ocupen toda la altura de la pantalla */
+    margin: 0; /* Elimina los márgenes por defecto */
+}
+
+body {
+    display: flex; /* Usamos Flexbox */
+    flex-direction: column; /* Alinea los elementos en una columna */
+}
+
+#contenido {
+    flex: 1; /* Este estilo hace que el contenido ocupe todo el espacio disponible */
+}
+
+#footer {
+    background-color: #F2F8E4; /* Color suave similar al de las frutas frescas */
+    padding: 15px;
+    text-align: center;
+    color: #2C6B2F; /* Verde, el mismo tono que usamos en otros elementos */
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    border-top: 2px solid #2C6B2F; /* Borde superior verde */
+    margin-top: auto; /* Empuja el pie de página hacia abajo */
 }

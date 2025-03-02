@@ -1,6 +1,7 @@
 <?php if (isset($userData)): ?>
     <h1>Editar Usuario</h1>
-    <form action="<?= base_url ?>usuario/actualizarUsuario" method="POST">
+    <!-- Añadimos la clase 'editar-usuario-form' al formulario -->
+    <form action="<?= base_url ?>usuario/actualizarUsuario" method="POST" class="editar-usuario-form">
         <input type="hidden" name="id" value="<?= $userData->id ?>" />
         
         <label for="nombre">Nombre:</label>

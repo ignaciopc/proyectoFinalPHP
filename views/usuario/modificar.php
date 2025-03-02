@@ -16,7 +16,8 @@
     </div>
 <?php endif; ?>
 
-<form action="<?= base_url ?>usuario/modificar" method="POST">
+<!-- Formulario con la clase 'modificar-cuenta-form' -->
+<form action="<?= base_url ?>usuario/modificar" method="POST" class="modificar-cuenta-form">
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre" value="<?= $_SESSION['identity']->nombre ?>" required />
 
