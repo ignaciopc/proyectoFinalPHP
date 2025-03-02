@@ -5,7 +5,7 @@
 $producto = new Producto();
 
 // Obtener productos aleatorios (ejemplo: 5 productos aleatorios)
-$productos = $producto->getRandom(5); // Obtén 5 productos aleatorios
+$productos = $producto->getRandom(6); // Obtén 5 productos aleatorios
 
 // Verifica si hay productos para mostrar
 if ($productos && count($productos) > 0):

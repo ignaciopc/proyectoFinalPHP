@@ -94,12 +94,13 @@ class pedidoController
                 }
 
                 // Enviar el correo de confirmación
+                echo $identity->email ;
                 $resultadoCorreo = enviarCorreoPedido($identity->email, $identity->nombre, $detallesPedido);
 
                 if ($resultadoCorreo === true) {
-                    echo "Pedido realizado con éxito. Te hemos enviado un correo.";
+                    $_SESSION['mensaje'] = "Pedido realizado con éxito. Te hemos enviado un correo.";
                 } else {
-                    echo "Error al enviar el correo: " . $resultadoCorreo;
+                    $_SESSION['error'] = "Error al enviar el correo: " . $resultadoCorreo;
                 }
             }
         }
