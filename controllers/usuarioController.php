@@ -216,7 +216,7 @@ class usuarioController
 			// Obtener los datos del usuario a editar
 			$userData = $usuario->getOne();
 			if ($userData) {
-				require_once 'views/usuarios/editar.php';  // Vista para editar usuario
+				require_once 'views/usuario/editar.php';  // Vista para editar usuario
 			} else {
 				header('Location: ' . base_url . 'usuario/gestion');
 			}

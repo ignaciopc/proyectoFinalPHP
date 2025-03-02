@@ -16,7 +16,6 @@ class categoriaController
   public function crear()
   {
     Utils::isAdmin();
-    echo "asdadadad";
     require_once 'views/categorias/crear.php';
   }
 

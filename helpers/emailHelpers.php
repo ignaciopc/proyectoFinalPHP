@@ -9,7 +9,7 @@ require 'vendor/autoload.php'; // Si usas Composer
 
 function enviarCorreoPedido($emailDestino, $nombreCliente, $pedido)
 {
-    $mail = new PHPMailer(true);
+    $mail = new     (true);
     try {
         // Configurar SMTP
         $mail->isSMTP();

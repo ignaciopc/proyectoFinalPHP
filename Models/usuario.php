@@ -8,7 +8,6 @@ class usuario
     private $email;
     private $password;
     private $rol;
-    private $imagen;
 
     private $db;
 
@@ -84,16 +83,6 @@ class usuario
     }
 
     // Getter y Setter para $imagen
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
-    public function setImagen($imagen)
-    {
-        $this->imagen = $imagen;
-    }
-
 
 
     public function save()
@@ -114,7 +103,6 @@ class usuario
             $stmt->bindParam(':apellidos', $this->apellidos);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $hashedPassword);  // Usar la contraseña hasheada
-            $stmt->bindParam(':imagen', $this->imagen);
 
             // Ejecutar la consulta
             $stmt->execute();
