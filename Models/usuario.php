@@ -89,24 +89,28 @@ class usuario
     {
         // Aplicar el hash a la contraseña
         $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
-
+    
         // Consulta SQL con placeholders
         $sql = "INSERT INTO usuarios (nombre, apellidos, email, password, rol, imagen) 
                 VALUES (:nombre, :apellidos, :email, :password, 'user', :imagen)";
-
+    
         try {
             // Preparar la consulta
             $stmt = $this->db->prepare($sql);
-
+    
             // Enlazar los parámetros con los valores de las propiedades de la clase
             $stmt->bindParam(':nombre', $this->nombre);
             $stmt->bindParam(':apellidos', $this->apellidos);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $hashedPassword);  // Usar la contraseña hasheada
-
+            
+            // Si no tienes imagen, usa NULL o un valor por defecto
+            $imagen = $this->imagen ?? NULL;
+            $stmt->bindParam(':imagen', $imagen);
+    
             // Ejecutar la consulta
             $stmt->execute();
-
+    
             return true; // Si la inserción fue exitosa
         } catch (PDOException $e) {
             // Si ocurre un error, mostrarlo
@@ -114,6 +118,7 @@ class usuario
             return false; // Si hubo un error
         }
     }
+    
 
 
 

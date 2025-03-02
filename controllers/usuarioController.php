@@ -53,10 +53,8 @@ class usuarioController
 			if (count($errores) > 0) {
 				$_SESSION['register'] = 'failed';  // Indicamos que la operación falló
 				$_SESSION['errores'] = $errores;  // Guardamos los errores en la sesión
-				header("Location: " . base_url . "/usuario/registro"); // Redirigimos al formulario
 				exit; // Aseguramos que no se ejecute más código después de la redirección
 			}
-
 			// Si no hay errores, continuamos con la creación del usuario
 			$usuario = new Usuario();
 			$usuario->setNombre($nombre);
@@ -78,7 +76,7 @@ class usuarioController
 		}
 
 		// Redirigir al formulario de registro
-		header("Location:" . base_url . "usuario/registro");
+		header(header: "Location:" . base_url . "usuario/registro");
 	}
 
 
