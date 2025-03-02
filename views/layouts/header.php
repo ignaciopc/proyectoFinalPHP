@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Tienda de Camisetas</title>
+	<title> Frutas del Valle</title>
 	<link rel="stylesheet" href="<?= base_url ?>./public/css/styles.css" />
 </head>
 
