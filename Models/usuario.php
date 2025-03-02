@@ -89,28 +89,28 @@ class usuario
     {
         // Aplicar el hash a la contraseña
         $hashedPassword = password_hash($this->password, PASSWORD_BCRYPT);
-    
+
         // Consulta SQL con placeholders
         $sql = "INSERT INTO usuarios (nombre, apellidos, email, password, rol, imagen) 
                 VALUES (:nombre, :apellidos, :email, :password, 'user', :imagen)";
-    
+
         try {
             // Preparar la consulta
             $stmt = $this->db->prepare($sql);
-    
+
             // Enlazar los parámetros con los valores de las propiedades de la clase
             $stmt->bindParam(':nombre', $this->nombre);
             $stmt->bindParam(':apellidos', $this->apellidos);
             $stmt->bindParam(':email', $this->email);
             $stmt->bindParam(':password', $hashedPassword);  // Usar la contraseña hasheada
-            
+
             // Si no tienes imagen, usa NULL o un valor por defecto
             $imagen = $this->imagen ?? NULL;
             $stmt->bindParam(':imagen', $imagen);
-    
+
             // Ejecutar la consulta
             $stmt->execute();
-    
+
             return true; // Si la inserción fue exitosa
         } catch (PDOException $e) {
             // Si ocurre un error, mostrarlo
@@ -118,7 +118,7 @@ class usuario
             return false; // Si hubo un error
         }
     }
-    
+
 
 
 
@@ -153,22 +153,24 @@ class usuario
 
     public function update()
     {
-        $sql = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email WHERE id = :id";
+        $sql = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email, rol = :rol WHERE id = :id";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':nombre', $this->nombre);
         $stmt->bindParam(':apellidos', $this->apellidos);
         $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':rol', $this->rol); 
         $stmt->bindParam(':id', $this->id);
 
         return $stmt->execute();
     }
+
     public function getAll()
     {
         // Consulta SQL para obtener todos los usuarios
         $sql = "SELECT id, nombre, apellidos, email, rol FROM usuarios"; // Puedes ajustar los campos según tus necesidades
         $stmt = $this->db->prepare($sql);
-        
+
         // Ejecutamos la consulta
         $stmt->execute();
 
@@ -180,7 +182,7 @@ class usuario
     {
         // Consulta SQL para obtener un usuario por ID
         $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
-        
+
         // Preparar la consulta
         $stmt = $this->db->prepare($sql);
 
@@ -207,22 +209,22 @@ class usuario
         $stmtLineasPedido = $this->db->prepare($sqlLineasPedido);
         $stmtLineasPedido->bindParam(':id', $this->id, PDO::PARAM_INT);
         $stmtLineasPedido->execute();
-    
+
         // Luego eliminar los pedidos relacionados con el usuario
         $sqlPedidos = "DELETE FROM pedidos WHERE usuario_id = :id";
         $stmtPedidos = $this->db->prepare($sqlPedidos);
         $stmtPedidos->bindParam(':id', $this->id, PDO::PARAM_INT);
         $stmtPedidos->execute();
-    
+
         // Finalmente eliminar el usuario
         $sqlUsuario = "DELETE FROM usuarios WHERE id = :id";
         $stmtUsuario = $this->db->prepare($sqlUsuario);
         $stmtUsuario->bindParam(':id', $this->id, PDO::PARAM_INT);
-    
+
         return $stmtUsuario->execute();
     }
-    
-    
+
+
 }
 
 ?>
