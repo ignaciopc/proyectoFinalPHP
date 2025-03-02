@@ -32,6 +32,7 @@
 				<li><a href="<?= base_url ?>categoria/index">Gestionar categorias</a></li>
 				<li><a href="<?= base_url ?>producto/gestion">Gestionar productos</a></li>
 				<li><a href="<?= base_url ?>pedido/misPedidos">Gestionar pedidos</a></li>
+				<li><a href="<?= base_url ?>usuario/gestionarUsuarios">Gestionar Usuarios</a></li>
 			<?php endif; ?>
 
 			<?php if (isset($_SESSION['identity'])): ?>

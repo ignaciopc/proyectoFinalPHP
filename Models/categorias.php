@@ -1,6 +1,4 @@
 <?php
-
-
 class categoria
 {
     private $id;
@@ -98,6 +96,47 @@ class categoria
             return false;
         }
     }
+    // Actualizar el nombre de una categoría
+    public function update()
+    {
+        $sql = "UPDATE categorias SET nombre = :nombre WHERE id = :id";
+
+        try {
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':nombre', $this->nombre, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true; // La categoría fue actualizada
+        } catch (PDOException $e) {
+            echo "Error al actualizar la categoría: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    // Eliminar una categoría
+    public function delete()
+    {
+        try {
+            // Primero eliminar los productos que pertenecen a esta categoría
+            $sqlProductos = "DELETE FROM productos WHERE categoria_id = :id";
+            $stmtProductos = $this->db->prepare($sqlProductos);
+            $stmtProductos->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $stmtProductos->execute();
+    
+            // Luego eliminar la categoría
+            $sqlCategoria = "DELETE FROM categorias WHERE id = :id";
+            $stmtCategoria = $this->db->prepare($sqlCategoria);
+            $stmtCategoria->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $stmtCategoria->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            echo "Error al eliminar la categoría: " . $e->getMessage();
+            return false;
+        }
+    }
+    
+
 
 }
 ?>

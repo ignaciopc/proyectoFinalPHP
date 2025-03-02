@@ -170,7 +170,66 @@ class usuario
 
         return $stmt->execute();
     }
+    public function getAll()
+    {
+        // Consulta SQL para obtener todos los usuarios
+        $sql = "SELECT id, nombre, apellidos, email, rol FROM usuarios"; // Puedes ajustar los campos según tus necesidades
+        $stmt = $this->db->prepare($sql);
+        
+        // Ejecutamos la consulta
+        $stmt->execute();
 
+        // Fetch all users and return them as an associative array or objects
+        return $stmt->fetchAll(PDO::FETCH_OBJ); // Retorna los resultados como un array de objetos
+    }
+
+    public function getOne()
+    {
+        // Consulta SQL para obtener un usuario por ID
+        $sql = "SELECT * FROM usuarios WHERE id = :id LIMIT 1";
+        
+        // Preparar la consulta
+        $stmt = $this->db->prepare($sql);
+
+        // Enlazar el parámetro ID
+        $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Verificar si se encontró el usuario y devolver los resultados
+        if ($stmt->rowCount() > 0) {
+            // Retorna el usuario como un objeto
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+
+        // Si no se encuentra el usuario, retorna null
+        return null;
+    }
+
+    public function delete()
+    {
+        // Primero eliminar las líneas de pedido relacionadas
+        $sqlLineasPedido = "DELETE FROM lineas_pedidos WHERE pedido_id IN (SELECT id FROM pedidos WHERE usuario_id = :id)";
+        $stmtLineasPedido = $this->db->prepare($sqlLineasPedido);
+        $stmtLineasPedido->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmtLineasPedido->execute();
+    
+        // Luego eliminar los pedidos relacionados con el usuario
+        $sqlPedidos = "DELETE FROM pedidos WHERE usuario_id = :id";
+        $stmtPedidos = $this->db->prepare($sqlPedidos);
+        $stmtPedidos->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $stmtPedidos->execute();
+    
+        // Finalmente eliminar el usuario
+        $sqlUsuario = "DELETE FROM usuarios WHERE id = :id";
+        $stmtUsuario = $this->db->prepare($sqlUsuario);
+        $stmtUsuario->bindParam(':id', $this->id, PDO::PARAM_INT);
+    
+        return $stmtUsuario->execute();
+    }
+    
+    
 }
 
 ?>

@@ -4,6 +4,12 @@ class carritoController
 {
     public function index()
     {
+        // Verificar si existe el carrito en la sesión o en la cookie
+        if (!isset($_SESSION['carrito']) && isset($_COOKIE['carrito'])) {
+            // Si no existe en sesión, pero sí en la cookie, cargamos el carrito desde la cookie
+            $_SESSION['carrito'] = json_decode($_COOKIE['carrito'], true);
+        }
+
         // Asegurarse de que la sesión 'carrito' está inicializada
         require_once 'views/carrito/index.php';
     }
@@ -55,6 +61,9 @@ class carritoController
             }
         }
 
+        // Guardar el carrito en la cookie (durará 30 días)
+        setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true); // HttpOnly
+
         // Redirigir a la página del carrito
         header("Location: " . base_url . "carrito/index");
         exit();
@@ -62,8 +71,12 @@ class carritoController
 
     public function delete()
     {
+        // Eliminar el carrito de la sesión y de la cookie
         unset($_SESSION["carrito"]);
-        header(header: "Location:" . base_url . "carrito/index");
+        setcookie('carrito', '', time() - 3600, "/", "", false, true); // Eliminar la cookie
+
+        header("Location: " . base_url . "carrito/index");
+        exit();
     }
 
     public function deleteEspecifico()
@@ -71,9 +84,12 @@ class carritoController
         if (isset($_GET['index'])) {
             $index = $_GET['index'];
             unset($_SESSION['carrito'][$index]);
-        }
-        header(header: "Location:" . base_url . "carrito/index");
 
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true); // HttpOnly
+        }
+        header("Location: " . base_url . "carrito/index");
+        exit();
     }
 
     function up()
@@ -81,22 +97,30 @@ class carritoController
         if (isset($_GET['index'])) {
             $index = $_GET['index'];
             $_SESSION['carrito'][$index]['unidades']++;
-        }
-        header(header: "Location:" . base_url . "carrito/index");
 
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true); // HttpOnly
+        }
+        header("Location: " . base_url . "carrito/index");
+        exit();
     }
+
     function down()
     {
         if (isset($_GET['index'])) {
             $index = $_GET['index'];
             $_SESSION['carrito'][$index]['unidades']--;
+
             if ($_SESSION['carrito'][$index]['unidades'] == 0) {
                 unset($_SESSION['carrito'][$index]);
-
             }
-        }
-        header(header: "Location:" . base_url . "carrito/index");
-    }
 
+            // Guardar la sesión actualizada en la cookie
+            setcookie('carrito', json_encode($_SESSION['carrito']), time() + (30 * 86400), "/", "", false, true); // HttpOnly
+        }
+        header("Location: " . base_url . "carrito/index");
+        exit();
+    }
 }
+
 ?>
