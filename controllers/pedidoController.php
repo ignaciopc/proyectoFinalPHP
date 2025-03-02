@@ -94,7 +94,6 @@ class pedidoController
                 }
 
                 // Enviar el correo de confirmación
-                echo $identity->email ;
                 $resultadoCorreo = enviarCorreoPedido($identity->email, $identity->nombre, $detallesPedido);
 
                 if ($resultadoCorreo === true) {
