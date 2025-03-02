@@ -113,5 +113,70 @@ class usuarioController
 		}
 		header('Location:' . base_url . '');
 	}
+
+
+	public function modificar()
+{
+    Utils::isIdentity(); // Verificar que el usuario está autenticado
+
+    if (isset($_POST)) {
+        $id = $_SESSION['identity']->id;  // ID del usuario autenticado
+        $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : false;
+        $apellidos = isset($_POST['apellidos']) ? trim($_POST['apellidos']) : false;
+        $email = isset($_POST['email']) ? trim($_POST['email']) : false;
+
+        // Validaciones
+        $errores = [];
+
+        if (empty($nombre)) {
+            $errores[] = "El nombre es obligatorio.";
+        }
+
+        if (empty($apellidos)) {
+            $errores[] = "Los apellidos son obligatorios.";
+        }
+
+        if (empty($email)) {
+            $errores[] = "El correo electrónico es obligatorio.";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errores[] = "El correo electrónico no tiene un formato válido.";
+        }
+
+        // Si hay errores, redirigir al formulario con los errores
+        if (count($errores) > 0) {
+            $_SESSION['update_error'] = $errores;
+            require_once 'views/usuario/modificar.php'; // Mostrar la vista con los errores
+            exit; // Detener la ejecución del código aquí
+        }
+
+        // Si no hay errores, actualizamos los datos
+        $usuario = new Usuario();
+        $usuario->setId($id);
+        $usuario->setNombre($nombre);
+        $usuario->setApellidos($apellidos);
+        $usuario->setEmail($email);
+
+        $save = $usuario->update();
+
+        // Actualizar la sesión y redirigir
+        if ($save) {
+            $_SESSION['identity']->nombre = $nombre;
+            $_SESSION['identity']->apellidos = $apellidos;
+            $_SESSION['identity']->email = $email;
+            $_SESSION["update_success"] = "Datos actualizados correctamente.";
+            header("Location:" . base_url . "usuario/index"); // Redirigir al perfil
+        } else {
+            $_SESSION["update_error"] = ["Error al actualizar los datos."];
+            header("Location:" . base_url . "usuario/modificar"); // Redirigir de nuevo al formulario de modificación
+        }
+    } else {
+        $_SESSION["update_error"] = ["Error al procesar la solicitud."];
+        header("Location:" . base_url . "usuario/modificar"); // Redirigir de nuevo al formulario de modificación
+    }
+}
+
+
+
+
 }
 ?>

@@ -158,6 +158,19 @@ class usuario
         return $result;
     }
 
+    public function update()
+    {
+        $sql = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':nombre', $this->nombre);
+        $stmt->bindParam(':apellidos', $this->apellidos);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':id', $this->id);
+
+        return $stmt->execute();
+    }
+
 }
 
 ?>

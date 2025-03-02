@@ -1,4 +1,6 @@
 <?php
+
+
 class categoria
 {
     private $id;
