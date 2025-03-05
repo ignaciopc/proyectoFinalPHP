@@ -51,9 +51,9 @@ class usuarioController
 
 			// Si existen errores, redirigir al formulario con los mensajes de error
 			if (count($errores) > 0) {
-				$_SESSION['register'] = 'failed';  // Indicamos que la operación falló
-				$_SESSION['errores'] = $errores;  // Guardamos los errores en la sesión
-				exit; // Aseguramos que no se ejecute más código después de la redirección
+				$_SESSION['register'] = 'failed'; 
+				$_SESSION['errores'] = $errores;  
+				exit; 
 			}
 			// Si no hay errores, continuamos con la creación del usuario
 			$usuario = new Usuario();
@@ -102,7 +102,7 @@ class usuarioController
 
 				// Crear una cookie que dure 30 días
 				// En este caso, almacenaremos el email del usuario, pero puedes cambiarlo por el ID o cualquier otro dato
-				setcookie('usuario', $identity->email, time() + (30 * 86400), "/", "", false, true); // HttpOnly
+				setcookie('usuario', $identity->email, time() + (30 * 86400), "/", "", false, true);
 
 			} else {
 				// Si el login falla, mostramos un mensaje de error
@@ -126,6 +126,9 @@ class usuarioController
 		if (isset($_SESSION['admin'])) {
 			unset($_SESSION['admin']);
 			# code...
+		}
+		if (isset($_COOKIE['usuario'])) {
+			setcookie('usuario', '', time() - 3600, "/", "", false, true);
 		}
 		header('Location:' . base_url . '');
 	}

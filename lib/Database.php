@@ -1,8 +1,6 @@
 <?php
 
-// Asegúrate de incluir el autoload de Composer para usar la librería Dotenv
-require_once __DIR__ . '/../vendor/autoload.php';  // Ajusta la ruta si es necesario
-
+require_once __DIR__ . '/../vendor/autoload.php';  
 use Dotenv\Dotenv;
 
 class Database
@@ -14,7 +12,7 @@ class Database
     function __construct()
     {
         // Cargar el archivo .env
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../'); // Ruta a la raíz del proyecto
+        $dotenv = Dotenv::createImmutable(paths: __DIR__ . '/../'); // Ruta a la raíz del proyecto
         $dotenv->load(); // Carga las variables de entorno
 
         try {
@@ -51,7 +49,6 @@ class Database
         return $this->pdo;
     }
 
-    // Evitar clonación de la instancia (patrón Singleton)
-    private function __clone() {}
+
 }
 ?>

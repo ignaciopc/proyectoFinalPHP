@@ -19,7 +19,7 @@
                 <?php if ($producto->imagen != null): ?>
                     <img src="<?= base_url ?>uploads/images/<?= $producto->imagen ?>" class="img_carrito" />
                 <?php else: ?>
-                    <img src="<?= base_url ?>assets/img/camiseta.png" class="img_carrito" />
+                    <img src="<?= base_url ?>uploads/images/fresa.png" class="img_carrito" />
                 <?php endif; ?>
             </td>
             <td>
